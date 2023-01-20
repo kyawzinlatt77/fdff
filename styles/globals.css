@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Sofia+Sans&display=swap');
+
+:root {
+  --primary: #2d2d2d;
+  --secondary: #5f5f5f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Playfair Display', serif;
+  font-family: 'Sofia Sans', sans-serif;
+  background-color: #ebe9e6;
+}
+
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+
+p {
+  font-family: 'Sofia Sans', sans-serif;
+  line-height: 1.5rem;
+}
+
+svg {
+  cursor: pointer;
+}
+
+.card input {
+  display: none;
+}
+
+.card input:checked ~ .content {
+  display: block;
+}
+
+.card label::before {
+  content: '+ More';
+}
+
+.card input:checked ~ label::before {
+  content: '- Less';
+}
