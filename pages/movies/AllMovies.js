@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import React, { useState } from 'react'
-import styled from 'styled-components';
-import { useQuery } from 'urql';
-import Movie from '../../components/Movie';
-import { GET_MOVIES, GET_CATEGORIES } from '../../graphql/query';
+import Head from "next/head";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useQuery } from "urql";
+import Movie from "../../components/Movie";
+import { GET_MOVIES, GET_CATEGORIES } from "../../graphql/query";
 
 const AllMovies = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -13,7 +13,7 @@ const AllMovies = () => {
       ? {
           filters: {
             category: {
-              slug: { eq: selectedCategory ? selectedCategory : null },
+              slug: { eq: selectedCategory },
             },
           },
         }
@@ -27,60 +27,60 @@ const AllMovies = () => {
     error: categoryError,
   } = categoryResult;
 
-  if (fetching || categoryFetching) return <p>Loading...</p>;
-  if (error || categoryError) return <p>Ugh..{error.message}</p>;
-  const movies = data.movies.data;
-  const categories = categoryData.categories.data;
-
   function handleCategorySelect(category) {
     setSelectedCategory(category);
     reexecuteQuery({ requestPolicy: "network-only" });
   }
-    function handleCategorytitle(category) {
-      setSelectedCategory(category);
-      reexecuteQuery({ requestPolicy: "network-only" });
-    }
+  function handleCategorytitle(category) {
+    setSelectedCategory(category);
+    reexecuteQuery({ requestPolicy: "network-only" });
+  }
 
   return (
-    <main className="flex ">
+    <main className="flex container mx-auto">
       <Head>
-        <title>All Movies</title>
+        <title>Movies Categories</title>
       </Head>
       <aside className="w-1/5">
         <ul>
-          {categories.map((item) => (
-            <li
-              className="p-2 font-semibold text-center hover:cursor-pointer"
-              onClick={() => handleCategorySelect(item.attributes.slug)}
-              key={item.attributes.slug}
-            >
-              {item.attributes.name}
-            </li>
-          ))}
+          {!categoryFetching && !categoryError 
+            ? categoryData.categories.data.map((item) => (
+                <li
+                  className="p-2 font-semibold text-center text-black hover:bg-slate-200 hover:cursor-pointer"
+                  onClick={() => handleCategorySelect(item.attributes.slug)}
+                  key={item.attributes.slug}
+                >
+                  {item.attributes.name}
+                </li>
+              ))
+            : <p>Loading..</p>}
         </ul>
       </aside>
-      <div className='w-full px-4'>
+      <div className="w-full px-4">
         <section>
-          <h1 className="p-4 text-black">
-            Movies Lists
-          </h1>
+          <h1 className="mb-3 font-semibold text-black">Movies</h1>
           <MovieGallery>
-            {movies.map((movie) => (
-              <Movie key={movie.attributes.slug} movie={movie} />
-            ))}
+            {!fetching && !error ? (
+              data.movies.data.map((movie) => (
+                <Movie key={movie.attributes.slug} movie={movie} />
+              ))
+            ) : (
+              <p>Loading</p>
+            )}
           </MovieGallery>
         </section>
       </div>
     </main>
   );
-}
+};
 
-export default AllMovies
+export default AllMovies;
 
 const MovieGallery = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  grid-gap: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 
   img {
     width: 100%;

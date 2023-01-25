@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "urql";
 import { useRouter } from "next/router";
@@ -20,10 +21,11 @@ const MovieDetails = () => {
 
   const movie = data.movies.data[0].attributes;
   const { title, description, image, type, time, slug } = movie;
+  const { url, width, height } = image.data.attributes.formats.medium;
 
   return (
-    <MovieDetailsStyled>
-      <img src={image.data.attributes.formats.medium.url} alt={title} />
+    <MovieDetailsStyled className="container mx-auto">
+      <Image className="my-5" src={url} alt={title} width={width} height={height} />
       <MovieInfo>
         <h2 className="text-2xl">{title}</h2>
         <div className="flex gap-2">
@@ -57,7 +59,6 @@ const MovieDetails = () => {
           <label for="toggle"></label>
         </div>
       </MovieInfo>
-      <div></div>
     </MovieDetailsStyled>
   );
 };
@@ -66,18 +67,18 @@ export default MovieDetails;
 
 const MovieDetailsStyled = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin-top: 2rem;
 
   img {
-    width: 20%;
-    height: 500px;
-    margin: 2rem 3rem;
+    width: 25%;
+    align-self: flex-start;
+    margin-right: auto;
   }
 `;
 
 const MovieInfo = styled.div`
-  width: 40%;
+  width: 50%;
   h2 {
     font-family: "Playfair Display", serif;
     font-weight: 1000;
@@ -104,5 +105,3 @@ const MovieInfo = styled.div`
     cursor: pointer;
   }
 `;
-
-

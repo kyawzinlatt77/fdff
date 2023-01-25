@@ -15,6 +15,7 @@ const Movie = ({ movie }) => {
             
           </Link>
           <h2>{title}</h2>
+          <p>{discripton}</p>
           <div className="flex pt-2 gap-5">
             <span>{type}</span>
             <span>{time}m</span>
@@ -26,16 +27,17 @@ const Movie = ({ movie }) => {
 export default Movie;
 
 const MovieStyled = styled.div`
+  width: 18rem;
   background-color: #c9ccd1;
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-inline: 20px;
   padding: 1.5rem;
   cursor: pointer;
 
   img {
     width: 100%;
+    height: 400px;
     object-fit: cover;
   }
 
