@@ -1,47 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import Search from "./Search";
+import UserMenu from "./UserMenu";
+import { useRouter } from "next/router";
+import {
+  BiHome,
+  BiCategoryAlt,
+  BiUserCircle,
+} from "react-icons/bi";
 
 const Navbar = () => {
-    return (
-      <div className="navbar bg-base-100">
-        <div className="flex-1">
-          <Link href="/" className="btn btn-ghost normal-case text-xl">
-            Movies
-          </Link>
-        </div>
-        <div className="flex-none gap-2">
-          <div className="form-control">
-            <input
-              type="text"
-              placeholder="Search"
-              className="input input-bordered"
-            />
-          </div>
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/80/80/people" />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a className="justify-between">Profile</a>
-              </li>
-              <li>
-                <a>Watch List</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+  const router = useRouter();
+
+  return (
+    <div className="navbar flex justify-between bg-slate-100 shadow-lg shadow-slate-500/40 rounded-lg">
+      <div>
+        <Link
+          href="/"
+          className="btn btn-ghost normal-case text-xl text-black "
+        >
+          RYU
+        </Link>
       </div>
-    );
-}
+      <div>
+        <ul className="flex gap-2 text-black">
+          <li onClick={() => router.push("/")} className=" btn btn-ghost">
+            <BiHome className="text-lg mb-1" /> Home
+          </li>
+          <li
+            onClick={() => router.push("/movies/AllMovies")}
+            className=" btn btn-ghost"
+          >
+            <BiCategoryAlt className="text-lg mb-1" /> Categories
+          </li>
+          <li
+            onClick={() => router.push("/Contact")}
+            className=" btn btn-ghost"
+          >
+            <BiUserCircle className="text-xl mb-1" /> Contact
+          </li>
+        </ul>
+      </div>
+      <UserMenu />
+    </div>
+  );
+};
 
 export default Navbar;

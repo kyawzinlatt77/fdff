@@ -7,7 +7,7 @@ const Movie = ({ movie }) => {
     const { image, title, discripton, type, time, slug } = movie.attributes
 
     return (
-        <MovieStyled>
+        <MovieStyled className="rounded-xl shadow-lg border">
           <Link href={`/movies/${slug}`}>
             <div>
               <img src={image.data.attributes.formats.small.url} alt={title} />
@@ -28,7 +28,7 @@ export default Movie;
 
 const MovieStyled = styled.div`
   width: 18rem;
-  background-color: #c9ccd1;
+  background-color: white;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ const MovieStyled = styled.div`
   }
 
   span {
-    color: var(--secondary);
+    color: black;
   }
 
 `;

@@ -1,9 +1,11 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useQuery } from "urql";
 import Movie from "../../components/Movie";
 import { GET_MOVIES, GET_CATEGORIES } from "../../graphql/query";
+import { BiChevronDown } from "react-icons/bi";
+import { Router } from "next/router";
 
 const AllMovies = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -37,14 +39,32 @@ const AllMovies = () => {
   }
 
   return (
-    <main className="flex container mx-auto">
+    <main className="flex flex-col container mx-auto">
       <Head>
         <title>Movies Categories</title>
       </Head>
-      <aside className="w-1/5">
-        <ul>
-          {!categoryFetching && !categoryError 
-            ? categoryData.categories.data.map((item) => (
+      <div className="flex justify-center my-4 gap-4">
+        <div className="form-control ">
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder="Search…"
+              className="mt-2 input-sm text-black bg-slate-50 border border-black shadow-lg"
+            />
+          </div>
+        </div>
+        <div className="dropdown dropdown-content text-black">
+          <label tabIndex={0} className="">
+            <span className="flex items-center mt-2 btn btn-sm text-black bg-slate-50 hover:bg-slate-200 shadow-lg">
+              Categories <BiChevronDown className="text-lg" />
+            </span>
+          </label>
+          <ul
+            tabIndex={0}
+            className="flex p-2 shadow menu menu-compact dropdown-content bg-slate-200 rounded-box w-52"
+          >
+            {!categoryFetching && !categoryError ? (
+              categoryData.categories.data.map((item) => (
                 <li
                   className="p-2 font-semibold text-center text-black hover:bg-slate-200 hover:cursor-pointer"
                   onClick={() => handleCategorySelect(item.attributes.slug)}
@@ -53,10 +73,29 @@ const AllMovies = () => {
                   {item.attributes.name}
                 </li>
               ))
-            : <p>Loading..</p>}
-        </ul>
-      </aside>
-      <div className="w-full px-4">
+            ) : (
+              <p>Loading..</p>
+            )}
+          </ul>
+        </div>
+
+        {/* <ul>
+          {!categoryFetching && !categoryError ? (
+            categoryData.categories.data.map((item) => (
+              <li
+                className="p-2 font-semibold text-center text-black hover:bg-slate-200 hover:cursor-pointer"
+                onClick={() => handleCategorySelect(item.attributes.slug)}
+                key={item.attributes.slug}
+              >
+                {item.attributes.name}
+              </li>
+            ))
+          ) : (
+            <p>Loading..</p>
+          )}
+        </ul> */}
+      </div>
+      <div>
         <section>
           <h1 className="mb-3 font-semibold text-black">Movies</h1>
           <MovieGallery>
@@ -84,7 +123,6 @@ const MovieGallery = styled.div`
 
   img {
     width: 100%;
-    height: 300px;
     object-fit: cover;
   }
 `;

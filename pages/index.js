@@ -38,48 +38,43 @@ export default function Home() {
   const LatestMovies = latestData.movies.data;
 
   return (
-      <main>
-        <section>
-          <div className="flex justify-between">
-            <h1 className="p-4 text-black">Latest Movies Lists</h1>
-            <Link
-              className="text-slate-900 pt-5 px-4"
-              href="/movies/LatestMovies"
-            >
-              view more
-            </Link>
-          </div>
-          <MovieGallery>
-            {LatestMovies.map((movie) => (
-              <Movie key={movie.attributes.slug} movie={movie} />
-            ))}
-          </MovieGallery>
-        </section>
-        <section>
-          <div className="flex justify-between">
-            <h1 className="p-4 text-black">Movies Lists</h1>
-            <Link className="text-slate-900 pt-5 px-4" href="/movies/AllMovies">
-              view more
-            </Link>
-          </div>
-          <MovieGallery>
-            {movies.map((movie) => (
-              <Movie key={movie.attributes.slug} movie={movie} />
-            ))}
-          </MovieGallery>
-        </section>
-      </main>
-    
+    <main>
+      <section>
+        <div className="flex justify-between">
+          <h1 className="p-4 text-black">Latest Movies Lists</h1>
+          <Link
+            className="text-slate-900 pt-5 px-4"
+            href="/movies/LatestMovies"
+          >
+            view more
+          </Link>
+        </div>
+        <MovieGallery>
+          {LatestMovies.map((movie) => (
+            <Movie key={movie.attributes.slug} movie={movie} />
+          ))}
+        </MovieGallery>
+      </section>
+      <section>
+        <div className="flex justify-between">
+          <h1 className="p-4 text-black">Movies Lists</h1>
+          <Link className="text-slate-900 pt-5 px-4" href="/movies/AllMovies">
+            view more
+          </Link>
+        </div>
+        <MovieGallery>
+          {movies.map((movie) => (
+            <Movie key={movie.attributes.slug} movie={movie} />
+          ))}
+        </MovieGallery>
+      </section>
+    </main>
   );
 }
 
 const MovieGallery = styled.div`
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 20rem));
-  grid-gap: 2rem; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
-
 `;

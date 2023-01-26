@@ -24,7 +24,7 @@ const LatestMovies = () => {
   return (
     <div>
       <section>
-        <div className="flex justify-between">
+        <div>
           <h1 className="p-4 text-black">Latest Movies Lists</h1>
         </div>
         <MovieGallery>

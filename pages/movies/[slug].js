@@ -25,15 +25,21 @@ const MovieDetails = () => {
 
   return (
     <MovieDetailsStyled className="container mx-auto">
-      <Image className="my-5" src={url} alt={title} width={width} height={height} />
+      <Image
+        className="m-5"
+        src={url}
+        alt={title}
+        width={width}
+        height={height}
+      />
       <MovieInfo>
         <h2 className="text-2xl">{title}</h2>
         <div className="flex gap-2">
-          <span className="px-3 py-1 rounded-xl border-2 border-black">
+          <span className="px-3 py-1 rounded-xl border border-black">
             {type}
           </span>
           <span></span>
-          <span className="px-3 py-1 rounded-xl border-2 border-black">
+          <span className="px-3 py-1 rounded-xl border border-black">
             {time}m
           </span>
         </div>
@@ -65,7 +71,7 @@ const MovieDetails = () => {
 
 export default MovieDetails;
 
-const MovieDetailsStyled = styled.div`
+const MovieDetailsStyled = styled.main`
   display: flex;
   /* justify-content: space-between; */
   margin-top: 2rem;
@@ -82,12 +88,12 @@ const MovieInfo = styled.div`
   h2 {
     font-family: "Playfair Display", serif;
     font-weight: 1000;
-    color: var(--primary);
+    color: black;
     margin: 1rem 0;
   }
   span {
     font: 1rem;
-    color: var(--primary);
+    color: black;
     margin: 1rem 0;
   }
   p {
@@ -95,8 +101,7 @@ const MovieInfo = styled.div`
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-
-    color: var(--secondary);
+    color: #383838;
   }
 
   label {
