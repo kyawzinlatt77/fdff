@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 
 export const getServerSideProps = withPageAuthRequired();
 
-const profile = ({ user }) => {
+const Profile = ({ user }) => {
   const router = useRouter();
   return (
-    <main className="w-1/2 m-16 mx-auto py-20 p-4 bg-white border shadow-xl rounded">
+    <main className="w-1/2 m-16 mx-auto py-20 p-4 shadow-xl shadow-slate-500/40 rounded">
       {user ? (
         <div className="flex flex-col items-center content-center">
           <img
@@ -17,12 +17,12 @@ const profile = ({ user }) => {
           />
           <h2>{user.name}</h2>
           <p>{user.email}</p>
-          <button className="mt-4 btn btn-sm rounded-full text-black bg-white hover:bg-slate-100 active:bg-slate-200 focus:outline-none focus:ring focus:ring-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300">
+          <button className="mt-4 btn btn-sm rounded-full text-black bg-white hover:bg-slate-100 active:bg-slate-200 focus:outline-none focus:ring focus:ring-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300  dark:border-white dark:bg-slate-900 dark:text-white">
             Saved List
           </button>
           <button
             onClick={() => router.push("/api/auth/logout")}
-            className="mt-4 btn btn-sm rounded-full text-black bg-white hover:bg-slate-100 active:bg-slate-200 focus:outline-none focus:ring focus:ring-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300"
+            className="mt-4 btn btn-sm rounded-full text-black bg-white hover:bg-slate-100 active:bg-slate-200 focus:outline-none focus:ring focus:ring-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300  dark:border-white dark:bg-slate-900 dark:text-white"
           >
             Log out
           </button>
@@ -32,4 +32,4 @@ const profile = ({ user }) => {
   );
 };
 
-export default profile;
+export default Profile;

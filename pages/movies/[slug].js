@@ -33,36 +33,32 @@ const MovieDetails = () => {
         height={height}
       />
 
-      <MovieInfo className="mx-auto shadow-lg">
+      <MovieInfo className="mx-auto shadow-lg shadow-slate-700/30 dark:bg-slate-900">
         <h2 className="text-2xl">{title}</h2>
         <div className="flex gap-3">
-          <span className="px-3 py-1 rounded-xl border border-black">
+          <span className="px-3 py-1 rounded-xl border border-black dark:border-[#B3B3B3]">
             {type}
           </span>
-          <span className="px-3 py-1 rounded-xl border border-black">
+          <span className="px-3 py-1 rounded-xl border border-black dark:border-[#B3B3B3]">
             {time}m
           </span>
         </div>
         <div>
           <Link href="./Watchmovies">
-            <button
-              className="py-2 px-4 rounded-full mr-2 text-white bg-green-500
-             hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring focus:ring-green-300"
-            >
+            <button className="rounded-full mr-2 border border-slate-500 btn btn-ghost shadow-lg shadow-slate-600/30">
               Watch Now
             </button>
           </Link>
 
-          <button
-            className="py-2 px-4 rounded-full ml-2 text-white bg-slate-400
-             hover:bg-slate-600 active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300"
-          >
+          <button className="rounded-full border border-slate-500 btn btn-ghost shadow-lg shadow-slate-600/30">
             Add To List
           </button>
         </div>
         <div className="card py-2">
           <input id="toggle" type="checkbox" />
-          <p className="content text-lg mt-4">{description}</p>
+          <p className="content text-lg mt-4 dark:text-[#B3B3B3]">
+            {description}
+          </p>
           <label for="toggle"></label>
         </div>
       </MovieInfo>
@@ -85,31 +81,27 @@ const MovieDetailsStyled = styled.main`
 `;
 
 const MovieInfo = styled.div`
-  background-color: #f1f5f9;
   padding: 2rem;
   width: 50%;
   h2 {
     font-family: "Playfair Display", serif;
     font-weight: 1000;
-    color: black;
     margin: 1rem 0;
   }
   span {
     font: 1rem;
-    color: black;
     margin: 1rem 0;
   }
   p {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    color: #9c9c9c;
     overflow: hidden;
-    color: #383838;
   }
 
   label {
     font-weight: 600;
-    color: black;
     cursor: pointer;
   }
 `;

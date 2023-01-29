@@ -6,7 +6,7 @@ import { FaTwitter, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 const Footer = () => {
   const router = useRouter();
   return (
-    <footer className="p-10 mt-8 bg-white text-black rounded-2xl">
+    <footer className="p-10 mt-8 bg-white text-black rounded-2xl dark:bg-slate-900 dark:text-white dark:shadow-lg">
       <div className="container mx-auto footer ">
         <div>
           <span className="footer-title">Services</span>

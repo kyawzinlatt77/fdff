@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Sofia+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Sofia+Sans&display=swap");
+
+@layer base {
+  body {
+    @apply bg-[#f0f8ff] text-black dark:bg-gray-900 dark:text-white;
+  }
+}
 
 * {
   margin: 0;
@@ -12,26 +18,24 @@
 
 html,
 body {
-  font-family: 'Playfair Display', serif;
-  font-family: 'Sofia Sans', sans-serif;
-  background-color: aliceblue;
+  font-family: "Playfair Display", serif;
+  font-family: "Sofia Sans", sans-serif;
+  background-color: #f0f8ff;
 }
 
-
 h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.5rem;
   padding: 0.5rem;
 }
 
 h2 {
   font-size: 1.2rem;
-  color: black;
+  /* color: black; */
 }
 
-
 p {
-  font-family: 'Sofia Sans', sans-serif;
+  font-family: "Sofia Sans", sans-serif;
   line-height: 1.5rem;
 }
 
@@ -48,13 +52,13 @@ svg {
 }
 
 .card label::before {
-  content: '+ More';
+  content: "+ More";
 }
 
 .card input:checked ~ label::before {
-  content: '- Less';
+  content: "- Less";
 }
 
 footer {
- box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

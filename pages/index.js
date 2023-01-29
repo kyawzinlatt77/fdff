@@ -37,13 +37,16 @@ export default function Home() {
   const movies = data.movies.data;
   const LatestMovies = latestData.movies.data;
 
+
   return (
     <main>
       <section>
         <div className="flex justify-between">
-          <h1 className="p-4 text-black">Latest Movies Lists</h1>
+          <h1 className="p-4">
+            Latest Movies Lists
+          </h1>
           <Link
-            className="text-slate-900 pt-5 px-4"
+            className="pt-5 px-4 "
             href="/movies/LatestMovies"
           >
             view more
@@ -57,8 +60,11 @@ export default function Home() {
       </section>
       <section>
         <div className="flex justify-between">
-          <h1 className="p-4 text-black">Movies Lists</h1>
-          <Link className="text-slate-900 pt-5 px-4" href="/movies/AllMovies">
+          <h1 className="p-4">Movies Lists</h1>
+          <Link
+            className=" pt-5 px-4 "
+            href="/movies/AllMovies"
+          >
             view more
           </Link>
         </div>

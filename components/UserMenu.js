@@ -14,7 +14,7 @@ const UserMenu = () => {
       <div>
         <Link
           href="/api/auth/login"
-          className=" btn btn-sm rounded-full text-black bg-white hover:bg-slate-100 active:bg-slate-200 focus:outline-none focus:ring focus:ring-white"
+          className=" btn btn-sm rounded-full text-black bg-white hover:bg-slate-100 active:bg-slate-200 focus:outline-none focus:ring focus:ring-white dark:bg-slate-900 dark:text-white dark:border-white dark:hover:bg-slate-800"
         >
           Login
         </Link>
@@ -25,11 +25,11 @@ const UserMenu = () => {
   //   if logged in
   return (
     <div
-      onClick={() => router.push("/profile")}
-      className="flex items-center gap-2 cursor-pointer border py-1 px-2 rounded-full border-black hover:bg-slate-200"
+      onClick={() => router.push("/Profile")}
+      className="flex btn items-center gap-2 cursor-pointer border py-1 px-2 rounded-full hover:bg-slate-200 border-black bg-white dark:bg-slate-900  dark:border-white dark:hover:bg-slate-800"
     >
       <img className="w-10 rounded-full" src={user.picture} alt={user.name} />
-      <p className="text-black ">{user.name}</p>
+      <p className="text-black dark:text-white">{user.name}</p>
     </div>
   );
 };

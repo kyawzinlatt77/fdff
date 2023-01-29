@@ -6,9 +6,10 @@ import Movie from "../../components/Movie";
 import { GET_MOVIES, GET_CATEGORIES } from "../../graphql/query";
 import { BiChevronDown } from "react-icons/bi";
 import { Router } from "next/router";
+import Link from "next/link";
 
 const AllMovies = () => {
-  
+  const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [results, reexecuteQuery] = useQuery({
     query: GET_MOVIES,
@@ -21,7 +22,10 @@ const AllMovies = () => {
           },
         }
       : null,
+
+    pagination: { start: 20, limit: 100 },
   });
+
   const { data, fetching, error } = results;
   const [categoryResult] = useQuery({ query: GET_CATEGORIES });
   const {
@@ -29,8 +33,6 @@ const AllMovies = () => {
     fetching: categoryFetching,
     error: categoryError,
   } = categoryResult;
-
-
 
   function handleCategorySelect(category) {
     setSelectedCategory(category);
@@ -52,25 +54,25 @@ const AllMovies = () => {
             <input
               type="text"
               placeholder="Search…"
-              className="mt-2 input-sm text-black bg-slate-50 border border-black shadow-lg"
-          
+              className="mt-2 input-sm border  shadow-lg dark:bg-slate-800 dark:border-slate-700"
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
         </div>
-        <div className="dropdown dropdown-content text-black">
+        <div className="dropdown dropdown-content text-black ">
           <label tabIndex={0} className="">
-            <span className="flex items-center mt-2 btn btn-sm text-black bg-slate-50 hover:bg-slate-200 shadow-lg">
+            <span className="flex items-center mt-2 btn btn-sm text-black bg-slate-50 hover:bg-slate-200 shadow-lg dark:bg-slate-800 dark:text-white dark:border-slate-700 ">
               Categories <BiChevronDown className="text-lg" />
             </span>
           </label>
           <ul
             tabIndex={0}
-            className="flex p-2 shadow menu menu-compact dropdown-content bg-slate-200 rounded-box w-52"
+            className="flex p-2 shadow menu menu-compact dropdown-content bg-slate-200 rounded-box w-52 dark:bg-slate-800 dark:text-white dark:border-slate-700"
           >
             {!categoryFetching && !categoryError ? (
               categoryData.categories.data.map((item) => (
                 <li
-                  className="p-2 font-semibold text-center text-black hover:bg-slate-200 hover:cursor-pointer"
+                  className="p-2 font-semibold text-center hover:bg-slate-200 hover:cursor-pointer"
                   onClick={() => handleCategorySelect(item.attributes.slug)}
                   key={item.attributes.slug}
                 >
@@ -80,6 +82,14 @@ const AllMovies = () => {
             ) : (
               <p>Loading..</p>
             )}
+            <li>
+              <Link
+                href="/movies/LatestMovies"
+                className="w-full p-2 text-lg font-semibold text-center hover:bg-slate-200 hover:cursor-pointer justify-center"
+              >
+                Latest
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -101,12 +111,18 @@ const AllMovies = () => {
       </div>
       <div>
         <section>
-          <h1 className="mb-3 font-semibold text-black">Movies</h1>
+          <h1 className="mb-3 font-semibold">Movies</h1>
           <MovieGallery>
             {!fetching && !error ? (
-              data.movies.data.map((movie) => (
-                <Movie key={movie.attributes.slug} movie={movie} />
-              ))
+              data.movies.data
+                .filter((movie) => {
+                  return search.toLowerCase() === ""
+                    ? movie
+                    : movie.attributes.title.toLowerCase().includes(search);
+                })
+                .map((movie) => (
+                  <Movie key={movie.attributes.slug} movie={movie} />
+                ))
             ) : (
               <p>Loading</p>
             )}

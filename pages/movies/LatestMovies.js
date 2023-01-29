@@ -25,7 +25,7 @@ const LatestMovies = () => {
     <div>
       <section>
         <div>
-          <h1 className="p-4 text-black">Latest Movies Lists</h1>
+          <h1 className="p-4">Latest Movies Lists</h1>
         </div>
         <MovieGallery>
           {LatestMovies.map((movie) => (

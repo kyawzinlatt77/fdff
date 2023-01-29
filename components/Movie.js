@@ -7,20 +7,19 @@ const Movie = ({ movie }) => {
     const { image, title, discripton, type, time, slug } = movie.attributes
 
     return (
-        <MovieStyled className="rounded-xl shadow-lg border">
-          <Link href={`/movies/${slug}`}>
-            <div>
-              <img src={image.data.attributes.formats.small.url} alt={title} />
-            </div>
-            
-          </Link>
-          <h2>{title}</h2>
-          <p>{discripton}</p>
-          <div className="flex pt-2 gap-5">
-            <span>{type}</span>
-            <span>{time}m</span>
+      <MovieStyled className="rounded-xl shadow-lg border shadow-slate-700/40 dark:bg-slate-900 dark:border-slate-700">
+        <Link href={`/movies/${slug}`}>
+          <div>
+            <img src={image.data.attributes.formats.small.url} alt={title} />
           </div>
-        </MovieStyled>
+        </Link>
+        <h2>{title}</h2>
+        <p>{discripton}</p>
+        <div className="flex pt-2 gap-5">
+          <span>{type}</span>
+          <span>{time}m</span>
+        </div>
+      </MovieStyled>
     );
 }
 
@@ -47,10 +46,6 @@ const MovieStyled = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
     padding-top: 0.5rem;
-  }
-
-  span {
-    color: black;
   }
 
 `;
