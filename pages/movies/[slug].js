@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "urql";
@@ -32,13 +32,13 @@ const MovieDetails = () => {
         width={width}
         height={height}
       />
-      <MovieInfo>
+
+      <MovieInfo className="mx-auto shadow-lg">
         <h2 className="text-2xl">{title}</h2>
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           <span className="px-3 py-1 rounded-xl border border-black">
             {type}
           </span>
-          <span></span>
           <span className="px-3 py-1 rounded-xl border border-black">
             {time}m
           </span>
@@ -52,6 +52,7 @@ const MovieDetails = () => {
               Watch Now
             </button>
           </Link>
+
           <button
             className="py-2 px-4 rounded-full ml-2 text-white bg-slate-400
              hover:bg-slate-600 active:bg-slate-700 focus:outline-none focus:ring focus:ring-slate-300"
@@ -74,16 +75,18 @@ export default MovieDetails;
 const MovieDetailsStyled = styled.main`
   display: flex;
   /* justify-content: space-between; */
-  margin-top: 2rem;
+  margin-top: 4rem;
 
   img {
-    width: 25%;
+    width: 20%;
     align-self: flex-start;
-    margin-right: auto;
+    margin: 0 4rem 4rem 4rem;
   }
 `;
 
 const MovieInfo = styled.div`
+  background-color: #f1f5f9;
+  padding: 2rem;
   width: 50%;
   h2 {
     font-family: "Playfair Display", serif;

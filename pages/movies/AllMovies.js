@@ -8,6 +8,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { Router } from "next/router";
 
 const AllMovies = () => {
+  
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [results, reexecuteQuery] = useQuery({
     query: GET_MOVIES,
@@ -28,6 +29,8 @@ const AllMovies = () => {
     fetching: categoryFetching,
     error: categoryError,
   } = categoryResult;
+
+
 
   function handleCategorySelect(category) {
     setSelectedCategory(category);
@@ -50,6 +53,7 @@ const AllMovies = () => {
               type="text"
               placeholder="Search…"
               className="mt-2 input-sm text-black bg-slate-50 border border-black shadow-lg"
+          
             />
           </div>
         </div>
