@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { toast, Toaster } from "react-hot-toast";
 import {
   FaTwitter,
   FaFacebookF,
@@ -11,7 +12,10 @@ const Contact = () => {
   const router = useRouter();
   const forReload = () => {
     router.reload();
+    toast.success(`meassage successfully sent`, {duration: 1500})
   };
+
+
 
   return (
     <div className="m-4 shadow-xl rounded-lg">
