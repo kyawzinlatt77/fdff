@@ -5,7 +5,9 @@ import UserLayout from "../components/layouts/UserLayout";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 
-const client = createClient({ url: "http://localhost:1337/graphql" });
+const client = createClient({
+  url: "https://strapi-production-0fb7.up.railway.app/graphql",
+});
 
 export default function App({ Component, pageProps }) {
   return (
